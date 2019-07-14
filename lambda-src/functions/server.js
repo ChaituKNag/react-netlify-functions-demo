@@ -13,9 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// const mongoDBUri = process.env.MLAB_URI;
-const mongoDBUri = 'mongodb://kncdbuser:Password1234@ds123658.mlab.com:23658/react-netlify-functions-demo';
-console.log('mongoDBUri', mongoDBUri);
+const mongoDBUri = process.env.MLAB_URI;
 
 mongoose.connect(mongoDBUri, {
     useNewUrlParser: true,
