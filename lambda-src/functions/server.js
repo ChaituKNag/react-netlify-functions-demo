@@ -28,22 +28,15 @@ connection.once('open', () => {
     console.log('MongoDB connected successfully');
 })
 
-if(process.env.LAMBDA_DEV) {
-    app.use('*', (req, res, next) => {
+app.use('*', (req, res, next) => {
+    if(process.env.LAMBDA_DEV) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        next();
-    })
-}
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE");
+    }
+    next();
+})
 
-const router = express.Router();
-router.get('/', (req, res) => {
-  res.status(200).json({
-      user:'Chaitu'
-  })
-});
-
-app.use('/.netlify/functions/server', router);
 app.use('/.netlify/functions/server/todos', todosRouter);
 
 exports.handler = serverless(app);
