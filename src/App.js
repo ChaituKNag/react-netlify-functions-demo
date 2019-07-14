@@ -6,7 +6,7 @@ import {API_PATH} from './constants';
 function App() {
 
   useEffect(() => {
-    fetch(`${API_PATH}/test`)
+    fetch(`${API_PATH}/server`)
       .then(res => res.json())
       .then(data => {
         console.log('data', data);

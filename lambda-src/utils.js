@@ -7,6 +7,11 @@ if(process.env.LAMBDA_DEV === 'true') {
     }
 }
 
+const genericErrorCatch = (err, res) => {
+    res.status(400).json(err);
+}
+
 module.exports = {
-    headers
+    headers,
+    genericErrorCatch
 }
